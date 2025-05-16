@@ -27,3 +27,22 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    associated_columns = {}
+
+    for line in lines:
+        line = line.strip().split("\t")
+        key = int(line[1])
+        value = line[0]
+
+        if key not in associated_columns:
+            associated_columns[key] = [value]
+        else:
+            associated_columns[key].append(value)
+
+    sorted_associated_columns = dict(sorted(associated_columns.items()))
+    result = [(key, sorted(set(values))) for key, values in sorted_associated_columns.items()]
+    
+    return result

@@ -24,3 +24,20 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    occur = {}
+
+    for line in lines:
+        line = line.strip().split("\t")
+        values = line[4].split(",")
+        
+        for element in values:
+            key, _ = element.split(":")
+    
+            occur[key] = occur.get(key, 0) + 1
+        
+    sorted_occur = dict(sorted(occur.items()))
+    
+    return sorted_occur

@@ -26,3 +26,18 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    sum = {}
+    
+    for line in lines:
+        line = line.strip().split("\t")
+        date = line[2].split("-")
+        month = date[1]
+
+        sum[month] = sum.get(month, 0) + 1
+    
+    sorted_sum = sorted(sum.items())
+
+    return sorted_sum

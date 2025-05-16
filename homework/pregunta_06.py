@@ -26,3 +26,26 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    max_and_min = {}
+
+    for line in lines:
+        line = line.strip().split("\t")
+        values = line[4].split(",")
+        
+        for element in values:
+            key, value = element.split(":")
+            value = int(value)
+
+            if key not in max_and_min:
+                max_and_min[key] = [value, value]
+            else:
+                max_and_min[key][0] = min(max_and_min[key][0], value)
+                max_and_min[key][1] = max(max_and_min[key][1], value)
+        
+    sorted_max_and_min = dict(sorted(max_and_min.items()))
+    result = [(key, values[0], values[1]) for key, values in sorted_max_and_min.items()]
+
+    return result

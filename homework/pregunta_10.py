@@ -20,3 +20,17 @@ def pregunta_10():
 
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    occur = []
+
+    for line in lines:
+        line = line.strip().split("\t")
+        letter = line[0]
+        
+        first_count = len(line[3].split(","))
+        second_count = len(line[4].split(","))
+        occur.append((letter, first_count, second_count))
+
+    return occur

@@ -15,3 +15,22 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    total_sum = {}
+
+    for line in lines:
+        line = line.strip().split("\t")
+
+        letter = line[0]
+        elements = line[4].split(",")        
+        values = [int(element.split(":")[1]) for element in elements]
+        
+        total_sum[letter] = total_sum.get(letter, 0) + sum(values)
+        
+    sorted_sum = dict(sorted(total_sum.items()))
+    
+    return sorted_sum
+
+pregunta_12()

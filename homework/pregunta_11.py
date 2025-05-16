@@ -16,3 +16,19 @@ def pregunta_11():
 
 
     """
+    with open("files/input/data.csv", "r") as f:
+        lines = f.readlines()
+
+    total_sum = {}
+
+    for line in lines:
+        line = line.strip().split("\t")
+        value = int(line[1])
+
+        elements = line[3].split(",")
+        for element in elements:
+            total_sum[element] = total_sum.get(element, 0) + value
+        
+    sorted_sum = dict(sorted(total_sum.items()))
+    
+    return sorted_sum
